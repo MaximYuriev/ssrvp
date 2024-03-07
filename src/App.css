@@ -1,0 +1,16 @@
+
+
+button {
+  color: black;
+}
+
+.blue {background-color: #008CBA;} /* Blue */
+.red {background-color: #f44336;} /* Red */ 
+.black {background-color: black;} /* Gray */ 
+.gray {background-color: #555555;} /* Black */
+
+a
+{
+  text-decoration: none;
+  color: black;
+}
