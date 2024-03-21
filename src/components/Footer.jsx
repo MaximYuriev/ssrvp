@@ -8,6 +8,7 @@ const Footer = () => {
     return (
         <BottomNavigation
             showLabels
+            
             sx={{position: 'fixed', bottom: 0, left: 0, width: 1.0}}
         >
             <BottomNavigationAction label="Add" icon={<AddIcon />} />

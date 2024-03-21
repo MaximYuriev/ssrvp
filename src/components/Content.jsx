@@ -1,10 +1,10 @@
 import { Box } from '@mui/system'
-import { Typography } from '@mui/material'
+
 
 
 const Content = ({children}) => {
     return (
-            <Box>
+            <Box marginTop="10px" height="850px"> 
                 {children}
             </Box>
         )

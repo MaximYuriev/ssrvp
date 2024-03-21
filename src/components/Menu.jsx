@@ -1,12 +1,12 @@
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
+
+
 const Menu = ({items}) => {
-
-
     const menuItems = items.map((item) => {
         if (item.id != 0){
-            return (
+            return ( 
                 <a href={'http://localhost:5173/'+item.path} key={item.id}>
                     <MenuItem>
                         {item.text}
@@ -17,9 +17,9 @@ const Menu = ({items}) => {
     })
 
     return (
-        <MenuList>
-            {menuItems}
-        </MenuList>
+            <MenuList>
+                {menuItems}
+            </MenuList>
     )
 }
 

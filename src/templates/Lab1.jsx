@@ -7,8 +7,11 @@ const Lab1 = () => {
                 <div id="counter"></div>
                 <button id="btn1">button1</button>
                 <form>
-		            <input type = "text" id="lgn"/>login<br/>
-		            <input type = "password" id="pswd"/>password<br/>
+                    
+		            <input type = "text" id="lgn"/>
+                    <label htmlFor="lgn">login</label><br/>
+		            <input type = "password" id="pswd"/>
+                    <label htmlFor="pswd">password</label><br/>
 		            <button id="btnin">Отправить</button>
 		            <button type="reset" id="btnclear">Очистить</button>
 	            </form>

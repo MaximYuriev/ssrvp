@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 const Header = ({text}) => {
     return (
-        <AppBar position="static">
+        <AppBar position="static" className='header'>
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {text}
