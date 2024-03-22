@@ -1,4 +1,4 @@
-function Button({label, click}){
-    return <button onClick={click}>{label}</button>
+function Button({label, click, ...otherprops}){
+    return <button onClick={click} {...otherprops}>{label}</button>
 }
 export default Button
