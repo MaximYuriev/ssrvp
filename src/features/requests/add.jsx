@@ -1,7 +1,8 @@
 import { useState } from "react"
 import React from "react"
 import { UsersContext } from "./get"
-import  Button  from "../../components/Button"
+import DialogForm from "../../components/Dialog"
+import AddIcon from '@mui/icons-material/Add';
 export default function AddUser() {
     const {users, fetchUsers} = React.useContext(UsersContext)
     const [name, setName] = useState("")
@@ -30,10 +31,9 @@ export default function AddUser() {
     }
   
     return (
-      <form>
-        <input type="text" placeholder="Введите имя" onChange={handleInputName}/>
-        <input type="text" placeholder="Введите возраст" onChange={handleInputAge}/>
-        <Button label={"Добавить"} click={handleSubmit} />
-      </form>
+      <DialogForm TextOpen="Добавить" Title="Добавление пользователя" TextAction="Добавить" Action={handleSubmit} iconbutton={<AddIcon/>}>
+        <input type="text" placeholder="Введите имя" onChange={handleInputName} /><br/><br/>
+        <input type="number" placeholder="Введите возраст" onChange={handleInputAge} /><br/><br/>
+      </DialogForm>
     )
   }

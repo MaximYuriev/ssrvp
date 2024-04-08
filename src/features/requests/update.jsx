@@ -2,8 +2,12 @@ import { useState } from "react"
 import React from "react"
 import { UsersContext } from "./get"
 import  Button  from "../../components/Button"
-export default function AddUser() {
+import DialogForm from "../../components/Dialog"
+import EditIcon from '@mui/icons-material/Edit';
+export default function UpdateUser() {
     const {users, fetchUsers} = React.useContext(UsersContext)
+
+    
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
     const [Id, setId] = useState("")
@@ -33,11 +37,10 @@ export default function AddUser() {
     }
   
     return (
-      <form>
-        <input type="text" placeholder="Введите Id" onChange={handleInputId}/>
-        <input type="text" placeholder="Введите имя" onChange={handleInputName}/>
-        <input type="text" placeholder="Введите возраст" onChange={handleInputAge}/>
-        <Button label={"Обновить"} click={handleSubmit} />
-      </form>
+      <DialogForm TextOpen="Обновить" Title="Обновление данных" TextAction="Обновить" Action={handleSubmit} iconbutton={<EditIcon/>}>
+            <input type="text" placeholder="Введите Id" onChange={handleInputId}/><br/><br/>
+            <input type="text" placeholder="Введите имя" onChange={handleInputName}/><br/><br/>
+            <input type="text" placeholder="Введите возраст" onChange={handleInputAge}/><br/><br/>
+      </DialogForm>
     )
   }

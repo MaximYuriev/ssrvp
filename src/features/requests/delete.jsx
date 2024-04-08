@@ -1,7 +1,8 @@
 import { useState } from "react"
 import React from "react"
 import { UsersContext } from "./get"
-import  Button  from "../../components/Button"
+import DialogForm from "../../components/Dialog"
+import DeleteIcon from '@mui/icons-material/Delete';
 export default function DeleteUser() {
     const {users, fetchUsers} = React.useContext(UsersContext)
     const [Id, setId] = useState("")
@@ -10,7 +11,10 @@ export default function DeleteUser() {
         setId(event.target.value)
     }
     const handleSubmit = async () => {
-
+      const deleteUser = {
+        "id": Id,
+      }
+  
       await fetch(`http://localhost:8000/api/users/${Id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -18,9 +22,8 @@ export default function DeleteUser() {
     }
   
     return (
-      <form>
+      <DialogForm TextOpen="Удалить" Title="Удаление пользователя" TextAction="Удалить" Action={handleSubmit} iconbutton={<DeleteIcon/>}>
         <input type="text" placeholder="Введите Id" onChange={handleInputId}/>
-        <Button label={"Удалить"} click={handleSubmit} />
-      </form>
+      </DialogForm>
     )
   }

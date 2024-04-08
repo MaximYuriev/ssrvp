@@ -1,21 +1,25 @@
 import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import { useContext } from 'react';
+import { ThemeContext } from '../App';
+import AddUser from '../features/requests/add';
+import UpdateUser from '../features/requests/update';
+import DeleteUser from '../features/requests/delete';
 
 const Footer = () => {
+    const {theme} = useContext(ThemeContext)
     return (
         <BottomNavigation
             showLabels
-            
-            sx={{position: 'fixed', bottom: 0, left: 0, width: 1.0}}
+            sx={{position: 'fixed', bottom: 0, left: 0, width: 1.0,zIndex: (theme) => theme.zIndex.drawer + 1 , borderTop: 1, backgroundColor: theme=="dark"?'black':'white'}}
         >
-            <BottomNavigationAction label="Add" icon={<AddIcon />} />
-            <BottomNavigationAction label="Edit" icon={<EditIcon />} />
-            <BottomNavigationAction label="Delete" icon={<DeleteIcon />} />
+            <AddUser/>
+            <UpdateUser/>
+            <DeleteUser/>
         </BottomNavigation>
     )
 }
 
 export default Footer
+//<BottomNavigationAction label="Add" icon={<AddIcon />}/>
+//<BottomNavigationAction label="Edit" icon={<EditIcon />}/>
+//<BottomNavigationAction label="Delete" icon={<DeleteIcon />}/>

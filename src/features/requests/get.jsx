@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddUser from "./add";
 import UpdateUser from "./update";
 import DeleteUser from "./delete";
+import Footer from "../../components/Footer";
 export const UsersContext = React.createContext({
   users: [], fetchUsers: () => {}
 })
@@ -17,19 +18,29 @@ export default function Users() {
     fetchUsers()
   }, [])
   const dataItems = users.map((user) => {
-        return ( 
-            <div key={user.id}>
-                    {user.name} {user.age}
-            </div>
-        )
-})
+    return (
+        <tr key={user.id}>
+          <td>{user.id}</td>
+          <td>{user.name}</td>
+          <td>{user.age}</td>
+        </tr>
+    )
+  })
   return (
         <UsersContext.Provider value={{users, fetchUsers}}>
-            <AddUser/><br/>
-            <UpdateUser/><br/>
-            <DeleteUser/><br/>
-            
-            <b>{dataItems}</b>
+            <table align="center" border="1">
+              <thead>
+                <tr>
+                  <td>Id</td>
+                  <td>Имя</td>
+                  <td>Возраст</td>
+                </tr>
+              </thead>
+              <tbody>
+                {dataItems}
+              </tbody>
+            </table>
+            <Footer/>
         </UsersContext.Provider>
   )
 }

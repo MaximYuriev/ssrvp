@@ -29,6 +29,7 @@ body
 
 body.dark h1,
 body.dark h2,
+body.dark h3,
 body.dark label,
 body.dark a,
 body.dark #counterLab4
@@ -44,3 +45,11 @@ body #counterLab4
 {
   color: black;
 }
+
+.headerLink
+{
+  font-size: 20px;
+  padding-right:1%;
+  color:white;
+}
+
