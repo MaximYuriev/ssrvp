@@ -26,7 +26,7 @@ const Menu = ({items}) => {
 
     return (
 
-                <Drawer open={open} onClose={openDrawer} variant='persistent' PaperProps={theme=="dark"?{sx:{backgroundColor:"#23272f"}}:{sx:{backgroundColor:"white"}}} >
+                <Drawer open={open} onClose={openDrawer} /*variant='persistent'*/ PaperProps={theme=="dark"?{sx:{backgroundColor:"#23272f"}}:{sx:{backgroundColor:"white"}}} >
                 <Toolbar />
                     <MenuList>
                         {menuItems}

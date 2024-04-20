@@ -11,6 +11,7 @@ import Lab3 from "./templates/Lab3"
 import Lab4 from "./templates/Lab4"
 import Lab5 from "./templates/Lab5"
 import Lab6 from "./templates/Lab6"
+import Lab8 from './templates/Lab8'
 import Author from './templates/Author'
 import { createContext, useEffect, useState } from "react"
 import { useLocalStorage } from './hooks/useLocalStorage'
@@ -24,6 +25,7 @@ export const menuItems = [
   { id: 5, text: "Лабораторная 5", path: "lab/5", component: <Lab5 /> },
   { id: 6, text: "Лабораторная 6", path: "lab/6", component: <Lab6 /> },
   { id: 7.1, text: "О себе", path: "author", component: <Author /> },
+  { id: 8, text: "Лабораторная 8", path: "lab/8", component: <Lab8 /> },
 ]
 
 const routes = menuItems.map((menuItem) => {
