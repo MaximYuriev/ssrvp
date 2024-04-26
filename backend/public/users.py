@@ -23,7 +23,7 @@ def find_user(id: int) -> Union[Main_UserDB,None]:
     return None
 @users_router.get("/api/users")
 def get_users():
-    return {"data" : users_list}
+    return {"lst" : users_list}
 
 
 

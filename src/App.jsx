@@ -51,7 +51,7 @@ function App() {
       document.body.classList.remove("dark")
   }, [theme]);
 
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const openDrawer = () => {
     setOpen((prev)=>!prev);
   };

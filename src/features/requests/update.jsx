@@ -1,17 +1,14 @@
 import { useState } from "react"
 import React from "react"
-import { UsersContext } from "./get"
-import  Button  from "../../components/Button"
 import DialogForm from "../../components/Dialog"
 import EditIcon from '@mui/icons-material/Edit';
+import { useUpdateUserMutation } from "./get";
 export default function UpdateUser() {
-    const {users, fetchUsers} = React.useContext(UsersContext)
 
-    
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
     const [Id, setId] = useState("")
-
+    const [updateUser] = useUpdateUserMutation()
     const handleInputName = event  => {
       setName(event.target.value)
     }
@@ -23,17 +20,11 @@ export default function UpdateUser() {
         setId(event.target.value)
     }
     const handleSubmit = async () => {
-      const updateUser = {
-        "id": Id,
-        "name": name,
-        "age": age
-      }
-  
-      await fetch("http://localhost:8000/api/users", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updateUser)
-      }).then(fetchUsers)
+      await updateUser({
+        id: Id,
+        name: name,
+        age: age
+      })
     }
   
     return (

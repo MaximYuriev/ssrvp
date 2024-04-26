@@ -10,6 +10,10 @@ const DialogForm = ({children,TextOpen,Title,TextAction,Action,iconbutton}) => {
     const handleClose = () => {
       setOpen(false);
     };
+    const actionClose = () =>{
+      setOpen(false);
+      Action()
+    }
     return (
             <> 
                 <BottomNavigationAction label={TextOpen} icon={iconbutton} onClick={handleClickOpen} showLabel/>
@@ -20,7 +24,7 @@ const DialogForm = ({children,TextOpen,Title,TextAction,Action,iconbutton}) => {
                   <DialogContent>
                     {children}
                   </DialogContent>
-                  <Button label={TextAction} click={Action}/>
+                  <Button label={TextAction} click={actionClose}/>
                 </Dialog>
             </>
         )

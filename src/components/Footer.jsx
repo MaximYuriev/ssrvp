@@ -5,14 +5,14 @@ import AddUser from '../features/requests/add';
 import UpdateUser from '../features/requests/update';
 import DeleteUser from '../features/requests/delete';
 
-const Footer = () => {
+const Footer = ({len}) => {
     const {theme} = useContext(ThemeContext)
     return (
         <BottomNavigation
             showLabels
             sx={{position: 'fixed', bottom: 0, left: 0, width: 1.0,zIndex: (theme) => theme.zIndex.drawer + 1 , borderTop: 1, backgroundColor: theme=="dark"?'black':'white'}}
         >
-            <AddUser/>
+            <AddUser len={len}/>
             <UpdateUser/>
             <DeleteUser/>
         </BottomNavigation>

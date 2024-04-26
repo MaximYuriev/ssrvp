@@ -1,46 +1,94 @@
 import React, { useEffect, useState } from "react";
-import AddUser from "./add";
-import UpdateUser from "./update";
-import DeleteUser from "./delete";
 import Footer from "../../components/Footer";
-export const UsersContext = React.createContext({
-  users: [], fetchUsers: () => {}
-})
+import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
+
+export const userApi = createApi({
+    reducerPath: "userApi",
+    baseQuery: fetchBaseQuery({
+      baseUrl: "http://localhost:8000/api"
+    }),
+    tagTypes: ['Users'],
+    endpoints: (builder) => ({
+      getUsers: builder.query({
+        query:()=>"/users",
+        providesTags: (id) => [{ type: 'Users', id }],
+      }),
+      addUser: builder.mutation({
+        query(body) {
+          return {
+            url:"/users",
+            method: "POST",
+            body
+          }
+        },
+        invalidatesTags: ['Users']
+      }),
+      updateUser: builder.mutation({
+        query(body){
+          return{
+            url:"/users",
+            method: "PUT",
+            body
+          }
+        },
+        invalidatesTags: ['Users']
+      }),
+      deleteUser: builder.mutation({
+        query(id){
+          return{
+            url:`/users/${id}`,
+            method: "DELETE"
+          }
+        },
+        invalidatesTags: ['Users']
+      })
+    })
+});
+export const {useGetUsersQuery,useAddUserMutation,useUpdateUserMutation,useDeleteUserMutation} = userApi
 export default function Users() {
-  const [users, setUser] = useState([])
-  const fetchUsers = async () => {
-    const response = await fetch("http://localhost:8000/api/users")
-    const users = await response.json()
-    setUser(users.data)
-  }
-  useEffect(() => {
-    fetchUsers()
-  }, [])
-  const dataItems = users.map((user) => {
+
+
+  const {data,error,isLoading} = useGetUsersQuery()
+
+  if (error)
+    return(<div>{error}</div>)
+  else if (isLoading)
+    return(<div>Загрузка...</div>)
+  else if (data)
+  {
+    const usr = data.lst
+    const Items = usr.map((user) => {
+      return (
+          <tr key={user.id}>
+            <td>{user.id}</td>
+            <td>{user.name}</td>
+            <td>{user.age}</td>
+          </tr>
+      )
+    })
     return (
-        <tr key={user.id}>
-          <td>{user.id}</td>
-          <td>{user.name}</td>
-          <td>{user.age}</td>
-        </tr>
+      <>
+        <table align="center" border="1">
+          <thead>
+            <tr>
+              <td>Id</td>
+              <td>Имя</td>
+              <td>Возраст</td>
+            </tr>
+          </thead>
+          <tbody>
+            {Items}
+          </tbody>
+        </table>
+        <Footer len={usr.length}/>
+      </>
     )
-  })
-  return (
-        <UsersContext.Provider value={{users, fetchUsers}}>
-            <table align="center" border="1">
-              <thead>
-                <tr>
-                  <td>Id</td>
-                  <td>Имя</td>
-                  <td>Возраст</td>
-                </tr>
-              </thead>
-              <tbody>
-                {dataItems}
-              </tbody>
-            </table>
-            <Footer/>
-        </UsersContext.Provider>
-  )
+  }
+  else
+    return (
+      <div>
+        Данных нет
+      </div>
+    )
 }
